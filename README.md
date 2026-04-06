@@ -11,5 +11,4 @@ cd midi-audio-to-car-horn
 source .venv/bin/activate
 
 python -m pip install -r requirements.txt
-
 ```
