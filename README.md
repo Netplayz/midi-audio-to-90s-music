@@ -1,12 +1,12 @@
-# MIDI audio to car horn
+# MIDI audio to 90s music
 
 This is a test script and wont be maintained and I just got bored and made this.
 
 install
 ```
-git clone https://github.com/netplayz/midi-audio-to-car-horn.git
+git clone https://github.com/netplay/zmidi-audio-to-90s-music.git
 
-cd midi-audio-to-car-horn
+cd midi-audio-to-90s-music
 
 source .venv/bin/activate
 
