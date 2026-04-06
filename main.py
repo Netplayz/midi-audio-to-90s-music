@@ -14,22 +14,33 @@ def midi_to_freq(note):
 
 # Car horn waveform
 def car_horn_wave(freq, duration):
-    t = np.linspace(0, duration, int(SAMPLE_RATE * duration), False)
+    num_samples = int(SAMPLE_RATE * duration)
 
+    if num_samples <= 0:
+        return np.array([], dtype=np.float32)
+
+    t = np.linspace(0, duration, num_samples, False)
+
+    # Waves
     wave1 = np.sign(np.sin(2 * np.pi * freq * t))
     wave2 = 0.5 * np.sign(np.sin(2 * np.pi * freq * 1.5 * t))
     wave3 = 0.3 * np.sign(np.sin(2 * np.pi * freq * 2.0 * t))
 
     wave_combined = wave1 + wave2 + wave3
 
-    # Envelope
-    attack = int(0.01 * SAMPLE_RATE)
-    release = int(0.2 * SAMPLE_RATE)
+    # Envelope lengths (clamped)
+    attack = min(int(0.01 * SAMPLE_RATE), num_samples // 2)
+    release = min(int(0.2 * SAMPLE_RATE), num_samples // 2)
 
-    envelope = np.ones_like(wave_combined)
+    envelope = np.ones(num_samples)
 
-    envelope[:attack] = np.linspace(0, 1, attack)
-    envelope[-release:] = np.linspace(1, 0, release)
+    # Apply attack
+    if attack > 0:
+        envelope[:attack] = np.linspace(0, 1, attack)
+
+    # Apply release
+    if release > 0:
+        envelope[-release:] = np.linspace(1, 0, release)
 
     return wave_combined * envelope
 
