@@ -68,7 +68,7 @@ def midi_to_horn(input_midi, output_wav):
     ticks_per_beat = mid.ticks_per_beat
 
     # Default tempo (120 BPM)
-    tempo = 500000
+    tempo = 500000  # microseconds per beat
 
     events = []
     current_time = 0.0
@@ -141,6 +141,6 @@ def midi_to_horn(input_midi, output_wav):
 # Run
 if __name__ == "__main__":
     input_file = "input.mid"
-    output_file = "car_horn.wav"
+    output_file = "output.wav"
 
     midi_to_horn(input_file, output_file)
