@@ -68,7 +68,7 @@ def midi_to_horn(input_midi, output_wav):
     ticks_per_beat = mid.ticks_per_beat
 
     # Default tempo (120 BPM)
-    tempo = 500000  # microseconds per beat
+    tempo = 500000
 
     events = []
     current_time = 0.0
